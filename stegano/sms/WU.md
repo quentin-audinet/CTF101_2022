@@ -1,4 +1,4 @@
-# PACT : Drôle de SMS
+# Drôle de SMS
 
 ## Difficulté : facile
 
