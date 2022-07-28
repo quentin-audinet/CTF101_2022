@@ -1,0 +1,22 @@
+{% extends 'mails/base.html' %}
+
+{% block additional %}
+<li class="selected"><a href="#">Rédiger</a></li>
+{% endblock additional %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+<ul id="w-params">
+    <li><input type="submit" value="Envoyer"/></li>
+    <li><a href="{% url 'read-mails' 1%}">Annuler</a></li>
+    <li>Enregistrer le brouillon</li>
+    <li>Options</li>
+</ul> 
+<label class="w-button" for="to">A:</label><input class="w-row" type="email" id="to" name="to" /><br/>
+<label class="w-button" for="copy">CC:</label><input class="w-row" type="text" id="copy" /><br/>
+<label class="w-text" for="obj">Sujet:</label><input class="w-row" type="text" length="100" id="obj" name="obj" /><br/>
+<textarea id="mail-content"  name="content"></textarea>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>Zimbra</title>
+        <link rel="stylesheet" href="{% static 'mails/styles.css' %}" />
+    </head>
+
+    <body>
+        <header>
+            <img src="{% static 'mails/logo-imt.png' %}" /><span id="user">{% if is_admin %}telecook@telecom-paris.fr{% else %}notahacker@telecom-paris.fr{% endif %}</span>
+            <ul id="tabs">
+                <li {% if current %}class="selected"{%endif%}><a href="{% url 'read-mails' 1 %}">Mails</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Calendrier</a></li>
+                <li><a href="#">Tâches</a></li>
+                <li><a href="#">Préférences</a></li>
+                <li><a href="#">Connect</a></li>
+                {% block additional %}{% endblock  %}
+            </ul>
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>

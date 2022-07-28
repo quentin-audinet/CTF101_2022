@@ -1,0 +1,73 @@
+{% extends 'mails/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav>
+    <a href="{% url 'new-mail' %}">
+        <span id="new_message">
+            Nouveau message
+        </span>
+    </a>
+
+    <span class="mail-button">
+        Rép. à tous
+    </span>
+
+    <span class="mail-button">
+        Faire suivre
+    </span>
+
+    <span class="mail-button">
+        Supprimer
+    </span>
+
+    <span class="mail-button">
+        Spam
+    </span>
+</nav>
+
+<div id="content">
+    <section id="folders">
+        <ul>
+            <a href="{% url 'read-mails' 1 %}"><li {% if mode == 1 %}class="folder-selected"{% endif %}>Réception</li></a>
+            <a href="{% url 'read-mails' 2 %}"><li {% if mode == 2 %}class="folder-selected"{% endif %}>Envoyés</li></a>
+            <li>Brouillons</li>
+            <li>Spam</li>
+            <li>Corbeille</li>
+        </ul>
+    </section>
+    <section id="mails">
+        {% for message in messages %}
+        <div class="message" onclick="location.replace('{% url 'read-mails' mode %}?id={{message.id}}')">
+            <h5>{% if mode == 1 %}{{ message.sender }} {% elif mode == 2 %}{{ message.to }}{% endif %}</h5>
+            <p>&ensp;&ensp;&ensp;✉&ensp;{{ message.obj }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    {% if current %}
+    <section id="preview">
+        <div id="mail-header">
+            <div>
+                <img src="{% static 'mails/person.png' %}" />
+            </div>
+            <div id="mail-info">
+                <b>{{ current.obj}}</b>
+                <p>Expéditeur: <span class="sender">{% if mode == 1 %}{{ current.sender }} {% elif mode == 2 and is_admin %}telecook@telecom-paris.fr{% else %}notahacker@telecom-paris.fr{% endif %}</span></p>
+                {% if mode == 2 %}<p>A:<span class="sender">{{ current.to }} </span></p>{% endif %}
+
+            </div>
+        </div>
+        <div id="mail-content">
+            {% autoescape off %}
+            <p>{{ current.content }}</p>
+            {% endautoescape %}
+        </div>
+    {% else %}
+    <section id="no-mail">
+        Pour afficher un mail, cliquez dessus.
+    {% endif %}
+    </section>
+</div>
+{% endblock %}
