@@ -2,6 +2,6 @@
 
 Nicolas Glady a égaré une clé USB et celle-ci semble contenir des informations très intéressantes ! Nous avons effectué une copie du lecteur, commencez par trouver comment le monter.
 
-checksum SHA256 de disk.image: 3bbdd1178265ea20a731f09a35a50b85baf669dfdb8f1e968c714ba5ab2d2046
+checksum SHA256 de disk.image: 82197f0a8784d9db68f20cdfaf3ddda841ef6ba92f1767c423218d2e77b35581
 
-flag: CTF101{ea138e0e3c9ca3193ebf6a4e66cefaa9}
+flag: CTF101{c5473b1eabfd20eff523a7710760e977}
